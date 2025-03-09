@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -8,6 +11,11 @@ android {
     namespace = "com.example.booknestapp"
     compileSdk = 35
 
+    val apiFile = rootProject.file("local.properties")
+    val properties = Properties()
+    properties.load(FileInputStream(apiFile))
+
+
     defaultConfig {
         applicationId = "com.example.booknestapp"
         minSdk = 24
@@ -16,6 +24,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Access API Key
+        buildConfigField("String", "SECURE_API_KEY", properties.getProperty("API_KEY"))
     }
 
     buildTypes {
@@ -36,6 +47,8 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+
     }
 }
 

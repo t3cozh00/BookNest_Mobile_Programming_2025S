@@ -3,6 +3,7 @@ package com.example.booknestapp.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.booknestapp.BuildConfig
 import com.example.booknestapp.R
 import com.example.booknestapp.api.BooksApi
 import com.example.booknestapp.models.BookItem
@@ -23,8 +24,9 @@ class BooksViewModel : ViewModel() {
     private val _currentPage = MutableStateFlow(1)
     val currentPage: StateFlow<Int> get() = _currentPage
 
-    private val apiKey = "AIzaSyDtS9_y1gsfdSnmovXhn3RCJerkePliaq0"
-    private val maxResults = 7 //Number of books per page
+    private val apiKey = BuildConfig.SECURE_API_KEY
+
+    private val maxResults = 9 //Number of books per page
 
     init {
         fetchKotlinBooks()
