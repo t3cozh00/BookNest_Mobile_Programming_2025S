@@ -31,7 +31,9 @@ fun DetailScreen(navController: NavController, book: BookItem?){
     }
 
     val coverUrl = book.volumeInfo.imageLinks?.thumbnail
+            ?.replace("http://", "https://")
         ?: book.volumeInfo.imageLinks?.smallThumbnail
+            ?.replace("http://", "https://")
         ?: "https://via.placeholder.com/150"
 
     Scaffold (topBar = { ScreenTopBar("Book Detail", navController) },
@@ -50,7 +52,7 @@ fun DetailScreen(navController: NavController, book: BookItem?){
                     .fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = book.volumeInfo.title, fontSize = 32.sp, fontWeight = FontWeight.Bold)
+            Text(text = book.volumeInfo.title, fontSize = 30.sp, fontWeight = FontWeight.Bold)
             book.volumeInfo.subtitle?.let {
                 Text(text = it)
             }

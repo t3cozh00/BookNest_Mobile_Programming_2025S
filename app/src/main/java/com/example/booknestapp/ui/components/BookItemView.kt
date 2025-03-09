@@ -1,5 +1,6 @@
 package com.example.booknestapp.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,9 +20,15 @@ import com.example.booknestapp.models.BookItem
 
 @Composable
 fun BookItemView(book: BookItem, navController: NavController ){
+
+
     val coverUrl = book.volumeInfo.imageLinks?.thumbnail
+            ?.replace("http://", "https://")
         ?: book.volumeInfo.imageLinks?.smallThumbnail
+            ?.replace("http://", "https://")
         ?: "https://via.placeholder.com/150"
+
+    Log.d("BookItemView", "Loading Image URL: $coverUrl") // ✅ Debugging
 
     Card (
         modifier = Modifier
@@ -33,13 +40,21 @@ fun BookItemView(book: BookItem, navController: NavController ){
             modifier = Modifier.padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
+
             Image(
-                painter = rememberAsyncImagePainter(coverUrl),
+                painter = rememberAsyncImagePainter(
+                    model = coverUrl,
+                    onSuccess = { Log.d("BookItemView", "Image Loaded Successfully") },
+                    onError = { Log.e("BookItemView", "Image Failed to Load") }
+
+                ),
                 contentDescription = book.volumeInfo.title,
                 modifier = Modifier
                     .height(150.dp)
                     .fillMaxWidth()
             )
+
+
             Spacer(modifier = Modifier.height(8.dp))
             Text(book.volumeInfo.title)
         }
