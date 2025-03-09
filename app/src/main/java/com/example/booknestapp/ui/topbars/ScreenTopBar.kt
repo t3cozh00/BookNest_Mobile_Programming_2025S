@@ -17,8 +17,8 @@ import androidx.navigation.NavController
 fun ScreenTopBar(title: String, navController: NavController){
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary,
+            containerColor = MaterialTheme.colorScheme.onPrimary,
+            //titleContentColor = MaterialTheme.colorScheme.onSecondary,
         ),
         title = {
             Text (text = title)

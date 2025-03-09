@@ -13,10 +13,9 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +38,8 @@ fun BooksScreen(navController: NavController, viewModel: BooksViewModel= viewMod
     val currentPage by viewModel.currentPage.collectAsState()
 
     Scaffold(
-        topBar = { MainTopBar("BookNest", navController) }
+        topBar = { MainTopBar("BookNest", navController) },
+        containerColor = MaterialTheme.colorScheme.onPrimary
     ) { innerPadding ->
         Column(
             modifier = Modifier.fillMaxSize().padding(innerPadding),
@@ -75,6 +75,7 @@ fun BooksScreen(navController: NavController, viewModel: BooksViewModel= viewMod
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
+
             ) {
                 Button(
                     onClick = { viewModel.previousPage() },

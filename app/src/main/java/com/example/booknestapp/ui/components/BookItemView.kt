@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,10 +35,11 @@ fun BookItemView(book: BookItem, navController: NavController ){
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
+            .height(250.dp)
             .clickable { navController.navigate("bookDetail/${book.id}") }
     ){
         Column (
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(8.dp).fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
 
@@ -56,7 +58,11 @@ fun BookItemView(book: BookItem, navController: NavController ){
 
 
             Spacer(modifier = Modifier.height(8.dp))
-            Text(book.volumeInfo.title)
+            Text(
+                book.volumeInfo.title,
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
     }
 }

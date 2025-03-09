@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -22,8 +24,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BookNestAppTheme {
-                val booksViewModel = BooksViewModel()
-                ScaffoldApp(booksViewModel)
+                Surface (color = MaterialTheme.colorScheme.onPrimary) {
+                    val booksViewModel = BooksViewModel()
+                    ScaffoldApp(booksViewModel)
+                }
             }
         }
     }
@@ -34,17 +38,20 @@ fun ScaffoldApp(booksViewModel: BooksViewModel){
     val navController = rememberNavController()
     val books by booksViewModel.books.collectAsState()
 
-    NavHost(
-        navController = navController,
-        startDestination = "home"
-    ){
-        composable(route = "home") { BooksScreen(navController, booksViewModel) }
-        composable(route = "info") { InfoScreen(navController) }
-        composable(route = "bookDetail/{bookId}") { backStackEntry ->
-            val bookId = backStackEntry.arguments?.getString("bookId") ?: ""
-            val selectedBook = books.find { it.id == bookId }
+    Surface (color = MaterialTheme.colorScheme.onPrimary) {
+        NavHost(
+            navController = navController,
+            startDestination = "home"
+        ) {
+            composable(route = "home") { BooksScreen(navController, booksViewModel) }
+            composable(route = "info") { InfoScreen(navController) }
+            composable(route = "bookDetail/{bookId}") { backStackEntry ->
+                val bookId = backStackEntry.arguments?.getString("bookId") ?: ""
+                val selectedBook = books.find { it.id == bookId }
 
-            DetailScreen(navController, selectedBook)
+                DetailScreen(navController, selectedBook)
+            }
+
         }
     }
 }

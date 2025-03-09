@@ -61,6 +61,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // install coil dependency
+    // Install coil dependency
     implementation(libs.coil.compose)
+    // Add the Jetpack Compose Google Fonts library
+    implementation(libs.androidx.ui.text.google.fonts)
+
+
 }
