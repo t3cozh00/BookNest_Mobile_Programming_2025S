@@ -45,7 +45,7 @@ fun InfoScreen(navController: NavController){
         ) {
             Column(
                 modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(10.dp)
 
             ) {
                 Text(text = "BookNest \uD83D\uDCDA",
@@ -53,11 +53,14 @@ fun InfoScreen(navController: NavController){
                         color = MaterialTheme.colorScheme.onSecondary
                     )
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(15.dp))
+
                 InfoText("An app for discovering books about Kotlin.")
                 InfoText("Powered by Google Books API")
                 InfoText("Version: 1.0.0")
                 InfoText("Developer: Name")
+                InfoText("Date: 10/03/2025")
+
             }
         }
     }

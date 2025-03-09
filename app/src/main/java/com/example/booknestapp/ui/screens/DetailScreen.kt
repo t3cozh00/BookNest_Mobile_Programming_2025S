@@ -56,7 +56,7 @@ fun DetailScreen(navController: NavController, book: BookItem?){
             ?.replace("http://", "https://")
         ?: book.volumeInfo.imageLinks?.smallThumbnail
             ?.replace("http://", "https://")
-        ?: "https://via.placeholder.com/150"
+        ?: "https://plus.unsplash.com/premium_photo-1677526779324-01d20d3a27ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGJvb2slMjBjb3ZlciUyMHByb2dyYW1taW5nfGVufDB8MXwwfHx8MA%3D%3D"
 
     Scaffold (
         topBar = { ScreenTopBar("Book Detail", navController) },
@@ -95,7 +95,7 @@ fun DetailScreen(navController: NavController, book: BookItem?){
             Spacer(modifier = Modifier.height(8.dp))
 
             book.volumeInfo.authors?.let {
-                BulletPointText("Authors", it.joinToString())
+                BulletPointText("Author(s)", it.joinToString())
             }
             book.volumeInfo.publisher?.let {
                 BulletPointText("Publisher", it)

@@ -23,7 +23,7 @@ class BooksViewModel : ViewModel() {
     val currentPage: StateFlow<Int> get() = _currentPage
 
     private val apiKey = "AIzaSyDtS9_y1gsfdSnmovXhn3RCJerkePliaq0"
-    private val maxResults = 6 //Number of books per page
+    private val maxResults = 7 //Number of books per page
 
     init {
         fetchKotlinBooks()

@@ -3,11 +3,12 @@ package com.example.booknestapp.ui.components
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,20 +28,20 @@ fun BookItemView(book: BookItem, navController: NavController ){
             ?.replace("http://", "https://")
         ?: book.volumeInfo.imageLinks?.smallThumbnail
             ?.replace("http://", "https://")
-        ?: "https://via.placeholder.com/150"
+        ?: "https://plus.unsplash.com/premium_photo-1677526779324-01d20d3a27ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGJvb2slMjBjb3ZlciUyMHByb2dyYW1taW5nfGVufDB8MXwwfHx8MA%3D%3D"
 
     Log.d("BookItemView", "Loading Image URL: $coverUrl") // ✅ Debugging
 
     Card (
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxWidth()
-            .height(250.dp)
+
+            .height(80.dp)
             .clickable { navController.navigate("bookDetail/${book.id}") }
     ){
-        Column (
+        Row (
             modifier = Modifier.padding(8.dp).fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            verticalAlignment = Alignment.CenterVertically
         ){
 
             Image(
@@ -52,16 +53,18 @@ fun BookItemView(book: BookItem, navController: NavController ){
                 ),
                 contentDescription = book.volumeInfo.title,
                 modifier = Modifier
-                    .height(150.dp)
+                    .height(70.dp)
+                    .width(50.dp)
                     .fillMaxWidth()
             )
 
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.width(16.dp)) //Space between image & title
+
             Text(
-                book.volumeInfo.title,
+                text = book.volumeInfo.title,
                 style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.weight(1f)
             )
         }
     }
