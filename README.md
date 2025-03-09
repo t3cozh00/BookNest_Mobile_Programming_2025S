@@ -38,3 +38,42 @@ BookNest is a mobile application built with **Kotlin** and **Jetpack Compose** t
 3. **Add your Google Books API Key.**
 
 4. **Sync Gradle and Run the App! 🚀**
+
+---
+
+## ⚠️ Important Note
+
+1. **Google Books API sometimes provides HTTP links instead of HTTPS, which Coil does not load by default.**
+   ```sh
+   To fix this issue, ensure that the image URL is converted from ↳"http://" to "https://".
+
+---
+
+## 🛠️ Project Structure
+
+   ```sh
+   📦 BookNest
+   ┣ 📂 app/src/main/java/com/example/booknestapp
+   ┃ ┣ 📂 models        # Data models (Book)
+   ┃ ┣ 📂 api           # Retrofit API interface
+   ┃ ┣ 📂 viewmodels    # ViewModel for data management
+   ┃ ┣ 📂 ui
+   ┃ ┃ ┣ 📂 screens     # Composable screens (BooksScreen, DetailScreen, InfoScreen)
+   ┃ ┃ ┣ 📂 components  # UI components (BookItemView)
+   ┃ ┃ ┣ 📂 topbar      # App Navigation setup
+   ┃ ┃ ┗ 📂 theme       # App theme and styling
+   ┃ ┣ 🗒️ MainActivity
+   ┗ 📜 README.md
+   ```
+
+---
+
+## 🕊️ Feature Improvements
+
+- Search functionality to find any book.
+- Favorites feature to save books for later.
+- Review and rate books.
+- Comment other users reviews.
+- Dark Mode for better accessibility.
+- AI-powered recommendations to suggest books users might be interested in.
+
