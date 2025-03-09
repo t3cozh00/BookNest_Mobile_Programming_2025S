@@ -54,6 +54,12 @@ BookNest is a mobile application built with **Kotlin** and **Jetpack Compose** t
    - **Improved maintainability** → Centralizes all text, making future updates easier.
    - **Follows best practices** → Hardcoded strings should be avoided in the code.
 
+3. **Secure API Key**
+
+   - Store api key in local.properties(.gitignore)
+   - Access api key (build.gradle.kts)
+   - BuildConfig.xxx
+
 ---
 
 ## 🛠️ Project Structure
