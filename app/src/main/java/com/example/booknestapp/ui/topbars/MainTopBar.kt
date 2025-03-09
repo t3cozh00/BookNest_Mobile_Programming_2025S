@@ -17,12 +17,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import com.example.booknestapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainTopBar(title: String, navController: NavController){
     var expanded by remember { mutableStateOf(false) }
+    val infoRoute = stringResource(R.string.info)
 
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -36,7 +39,7 @@ fun MainTopBar(title: String, navController: NavController){
             IconButton(onClick = { /* do something */ }) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
-                    contentDescription = "Open menu"
+                    contentDescription = stringResource(R.string.open_menu)
                 )
             }
         },
@@ -44,7 +47,7 @@ fun MainTopBar(title: String, navController: NavController){
             IconButton(onClick = { expanded = !expanded }) {
                 Icon(
                     imageVector = Icons.Filled.MoreVert,
-                    contentDescription = "Open submenu"
+                    contentDescription = stringResource(R.string.open_submenu)
                 )
             }
             DropdownMenu(
@@ -52,8 +55,8 @@ fun MainTopBar(title: String, navController: NavController){
                 onDismissRequest = {expanded = false}
             ){
                 DropdownMenuItem(
-                    text = { Text("Info") },
-                    onClick = {navController.navigate("info")}
+                    text = { Text(stringResource(R.string.info_topbar)) },
+                    onClick = {navController.navigate(infoRoute)}
                 )
 
             }

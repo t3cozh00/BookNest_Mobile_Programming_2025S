@@ -21,9 +21,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.booknestapp.R
 import com.example.booknestapp.models.BookItem
 import com.example.booknestapp.ui.topbars.ScreenTopBar
 
@@ -44,7 +46,7 @@ fun DetailScreen(navController: NavController, book: BookItem?){
     if (book == null){
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
             Text(
-                text = "Book not found",
+                text = stringResource(R.string.book_not_found),
                 style = MaterialTheme.typography.titleMedium.copy(
                 color = MaterialTheme.colorScheme.error)
             )
@@ -52,14 +54,17 @@ fun DetailScreen(navController: NavController, book: BookItem?){
         return
     }
 
+    val httpString = stringResource(R.string.http)
+    val httpsString = stringResource(R.string.https)
+
     val coverUrl = book.volumeInfo.imageLinks?.thumbnail
-            ?.replace("http://", "https://")
+            ?.replace(httpString, httpsString)
         ?: book.volumeInfo.imageLinks?.smallThumbnail
-            ?.replace("http://", "https://")
-        ?: "https://plus.unsplash.com/premium_photo-1677526779324-01d20d3a27ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGJvb2slMjBjb3ZlciUyMHByb2dyYW1taW5nfGVufDB8MXwwfHx8MA%3D%3D"
+            ?.replace(httpString, httpsString)
+        ?: stringResource(R.string.placeholder_cover)
 
     Scaffold (
-        topBar = { ScreenTopBar("Book Detail", navController) },
+        topBar = { ScreenTopBar(stringResource(R.string.book_detail_topbar), navController) },
         containerColor = MaterialTheme.colorScheme.onPrimary
     ){ innerPadding ->
         Column(
@@ -95,13 +100,13 @@ fun DetailScreen(navController: NavController, book: BookItem?){
             Spacer(modifier = Modifier.height(8.dp))
 
             book.volumeInfo.authors?.let {
-                BulletPointText("Author(s)", it.joinToString())
+                BulletPointText(stringResource(R.string.author_s), it.joinToString())
             }
             book.volumeInfo.publisher?.let {
-                BulletPointText("Publisher", it)
+                BulletPointText(stringResource(R.string.publisher), it)
             }
             book.volumeInfo.publishedDate?.let {
-                BulletPointText("Published", it)
+                BulletPointText(stringResource(R.string.published), it)
             }
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -113,7 +118,7 @@ fun DetailScreen(navController: NavController, book: BookItem?){
 
             ) {
                 Text(
-                    text = book.volumeInfo.description ?: "No description available.",
+                    text = book.volumeInfo.description ?: stringResource(R.string.no_description_available),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = MaterialTheme.colorScheme.onBackground
                     ),

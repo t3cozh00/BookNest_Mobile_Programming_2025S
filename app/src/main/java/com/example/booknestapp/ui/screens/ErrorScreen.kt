@@ -8,8 +8,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import com.example.booknestapp.R
 
 
 @Composable
@@ -20,12 +21,12 @@ fun ErrorScreen(errorMessage: String, onRetry: () -> Unit){
     ){
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Oops! Something went wrong!",
+                text = stringResource(R.string.oops_something_went_wrong),
                 fontSize = 30.sp,
             )
             Text(text=errorMessage)
             Button(onClick = onRetry) {
-                Text(text = "Retry")
+                Text(text = stringResource(R.string.retry))
             }
         }
     }

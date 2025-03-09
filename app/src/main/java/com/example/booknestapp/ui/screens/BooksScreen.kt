@@ -22,9 +22,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.booknestapp.R
 import com.example.booknestapp.ui.components.BookItemView
 import com.example.booknestapp.ui.topbars.MainTopBar
 import com.example.booknestapp.viewmodels.BooksViewModel
@@ -32,16 +34,18 @@ import com.example.booknestapp.viewmodels.BooksViewModel
 @Composable
 fun BooksScreen(navController: NavController, viewModel: BooksViewModel= viewModel()) {
     val books by viewModel.books.collectAsState()
-    val errorMessage by viewModel.errorMessage.collectAsState()
+    val errorMessageResId by viewModel.errorMessageResId.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val currentPage by viewModel.currentPage.collectAsState()
 
     Scaffold(
-        topBar = { MainTopBar("BookNest", navController) },
+        topBar = { MainTopBar(stringResource(R.string.booknest_topbar), navController) },
         containerColor = MaterialTheme.colorScheme.onPrimary
     ) { innerPadding ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(innerPadding),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
@@ -50,17 +54,19 @@ fun BooksScreen(navController: NavController, viewModel: BooksViewModel= viewMod
                         LoadingScreen()
                     }
 
-                    errorMessage != null -> {
-                        ErrorScreen(errorMessage!!, onRetry = { viewModel.fetchKotlinBooks() })
+                    errorMessageResId != null -> {
+                        ErrorScreen(stringResource(errorMessageResId!!), onRetry = { viewModel.fetchKotlinBooks() })
                     }
 
                     books.isEmpty() -> {
-                        Text(text = "No books found", modifier = Modifier.align(Alignment.Center))
+                        Text(text = stringResource(R.string.no_books_found), modifier = Modifier.align(Alignment.Center))
                     }
 
                     else -> {
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize().padding(8.dp)
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp)
                         ) {
                             items(books) { book ->
                                 BookItemView(book, navController)
@@ -71,7 +77,9 @@ fun BooksScreen(navController: NavController, viewModel: BooksViewModel= viewMod
             }
 
             Row(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
 
             ) {
@@ -79,13 +87,19 @@ fun BooksScreen(navController: NavController, viewModel: BooksViewModel= viewMod
                     onClick = { viewModel.previousPage() },
                     enabled = currentPage > 1
                 ) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous Page")
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(
+                        R.string.previous_page
+                    )
+                    )
                 }
-                Text(text = "...")
+                Text(text = stringResource(R.string.page_dots))
                 Button(
                     onClick = { viewModel.nextPage() }
                 ) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next Page")
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowForward, contentDescription = stringResource(
+                        R.string.next_page
+                    )
+                    )
                 }
             }
         }

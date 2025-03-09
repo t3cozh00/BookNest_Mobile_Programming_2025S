@@ -3,6 +3,7 @@ package com.example.booknestapp.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.booknestapp.R
 import com.example.booknestapp.api.BooksApi
 import com.example.booknestapp.models.BookItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,8 +14,8 @@ class BooksViewModel : ViewModel() {
     private  val _books = MutableStateFlow<List<BookItem>>(emptyList())
     val books: StateFlow<List<BookItem>> get() = _books
 
-    private val _errorMessage = MutableStateFlow<String?>(null) // Store error message
-    val errorMessage: StateFlow<String?> get() = _errorMessage
+    private val _errorMessageResId = MutableStateFlow<Int?>(null) // Store resource ID instead
+    val errorMessageResId: StateFlow<Int?> get() = _errorMessageResId
 
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> get() = _isLoading
@@ -32,7 +33,7 @@ class BooksViewModel : ViewModel() {
     fun fetchKotlinBooks(page: Int = _currentPage.value){
         viewModelScope.launch {
             _isLoading.value = true
-            _errorMessage.value = null
+            _errorMessageResId.value = null
 
             try {
                 val startIndex = (page - 1) * maxResults //Calculate correct start index
@@ -42,8 +43,9 @@ class BooksViewModel : ViewModel() {
                     maxResults = maxResults
                 )
 
+
                 if(bookList.items.isNullOrEmpty()){
-                    _errorMessage.value = "No books found in API response."
+                    _errorMessageResId.value = R.string.no_books_found_in_api_response
                     _books.value = emptyList()
                 } else{
                     _books.value = bookList.items
@@ -51,7 +53,8 @@ class BooksViewModel : ViewModel() {
                 }
             } catch (e: Exception){
                 Log.e("BooksViewModel", "Error fetching books", e)
-                _errorMessage.value = "Error fetching books: ${e.message}"
+
+                _errorMessageResId.value = R.string.no_books_found_in_api_response
                 _books.value = emptyList()
             } finally {
                 _isLoading.value = false

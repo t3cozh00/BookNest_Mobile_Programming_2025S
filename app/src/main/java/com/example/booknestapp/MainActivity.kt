@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -38,13 +39,17 @@ fun ScaffoldApp(booksViewModel: BooksViewModel){
     val navController = rememberNavController()
     val books by booksViewModel.books.collectAsState()
 
+    val homeRoute = stringResource(R.string.home)
+    val infoRoute = stringResource(R.string.info)
+
+
     Surface (color = MaterialTheme.colorScheme.onPrimary) {
         NavHost(
             navController = navController,
-            startDestination = "home"
+            startDestination = homeRoute
         ) {
-            composable(route = "home") { BooksScreen(navController, booksViewModel) }
-            composable(route = "info") { InfoScreen(navController) }
+            composable(route = homeRoute) { BooksScreen(navController, booksViewModel) }
+            composable(route = infoRoute) { InfoScreen(navController) }
             composable(route = "bookDetail/{bookId}") { backStackEntry ->
                 val bookId = backStackEntry.arguments?.getString("bookId") ?: ""
                 val selectedBook = books.find { it.id == bookId }
