@@ -43,28 +43,34 @@ BookNest is a mobile application built with **Kotlin** and **Jetpack Compose** t
 
 ## ⚠️ Important Note
 
-1. **Google Books API sometimes provides HTTP links instead of HTTPS, which Coil does not load by default.**
+1. **Google Books API sometimes provides HTTP links instead of HTTPS, which Coil does not load by default**
+
    ```sh
    To fix this issue, ensure that the image URL is converted from ↳"http://" to "https://".
+
+2. **Save Strings under resource file**
+
+   - **Better localization support** → Easily translate text to different languages.
+   - **Improved maintainability** → Centralizes all text, making future updates easier.
+   - **Follows best practices** → Hardcoded strings should be avoided in the code.
 
 ---
 
 ## 🛠️ Project Structure
 
-   ```sh
-   📦 BookNest
-   ┣ 📂 app/src/main/java/com/example/booknestapp
-   ┃ ┣ 📂 models        # Data models (Book)
-   ┃ ┣ 📂 api           # Retrofit API interface
-   ┃ ┣ 📂 viewmodels    # ViewModel for data management
-   ┃ ┣ 📂 ui
-   ┃ ┃ ┣ 📂 screens     # Composable screens (BooksScreen, DetailScreen, InfoScreen)
-   ┃ ┃ ┣ 📂 components  # UI components (BookItemView)
-   ┃ ┃ ┣ 📂 topbar      # App Navigation setup
-   ┃ ┃ ┗ 📂 theme       # App theme and styling
-   ┃ ┣ 🗒️ MainActivity
-   ┗ 📜 README.md
-   ```
+      📦 BookNest
+      ┣ 📂 app/src/main/java/com/example/booknestapp
+      ┃ ┣ 📂 models        # Data models (Book)
+      ┃ ┣ 📂 api           # Retrofit API interface
+      ┃ ┣ 📂 viewmodels    # ViewModel for data management
+      ┃ ┣ 📂 ui
+      ┃ ┃ ┣ 📂 screens     # Composable screens
+      ┃ ┃ ┣ 📂 components  # UI components (BookItemView)
+      ┃ ┃ ┣ 📂 topbar      # App Navigation setup
+      ┃ ┃ ┗ 📂 theme       # App theme and styling
+      ┃ ┣ 🗒️ MainActivity
+      ┗ 📜 README.md
+
 
 ---
 
