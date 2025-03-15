@@ -57,7 +57,7 @@ fun InfoScreen(navController: NavController){
                 )
                 Spacer(modifier = Modifier.height(15.dp))
 
-                InfoText(stringResource(R.string.an_app_for_discovering_books_about_kotlin))
+                InfoText(stringResource(R.string.an_app_for_discovering_books))
                 InfoText(stringResource(R.string.powered_by_google_books_api))
                 InfoText(stringResource(R.string.version_1_0_0))
                 InfoText(stringResource(R.string.developer_name))

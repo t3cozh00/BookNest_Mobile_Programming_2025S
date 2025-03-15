@@ -1,9 +1,11 @@
 package com.example.booknestapp.ui.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,10 +21,13 @@ fun ErrorScreen(errorMessage: String, onRetry: () -> Unit){
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
             Text(
                 text = stringResource(R.string.oops_something_went_wrong),
-                fontSize = 30.sp,
+                style = MaterialTheme.typography.bodyMedium
             )
             Text(text=errorMessage)
             Button(onClick = onRetry) {

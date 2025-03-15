@@ -83,9 +83,8 @@ BookNest is a mobile application built with **Kotlin** and **Jetpack Compose** t
 ## 🕊️ Feature Improvements
 
 - Search functionality to find any book.
+- Sign-up, sign-in functionalities.
 - Favorites feature to save books for later.
 - Review and rate books.
-- Comment other users reviews.
-- Dark Mode for better accessibility.
 - AI-powered recommendations to suggest books users might be interested in.
 

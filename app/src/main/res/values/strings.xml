@@ -3,7 +3,6 @@
     <string name="home">home</string>
     <string name="info">info</string>
     <string name="book_not_found">Book not found</string>
-    <string name="placeholder_cover"><![CDATA[https://plus.unsplash.com/premium_photo–1677526779324–01d20d3a27ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGJvb2slMjBjb3ZlciUyMHByb2dyYW1taW5nfGVufDB8MXwwfHx8MA%3D%3D]]></string>
     <string name="book_detail_topbar">Book Detail</string>
     <string name="author_s">Author(s)</string>
     <string name="publisher">Publisher</string>
@@ -20,15 +19,16 @@
     <string name="retry">Retry</string>
     <string name="info_topbar">Info</string>
     <string name="booknest_emoji">BookNest 📚</string>
-    <string name="an_app_for_discovering_books_about_kotlin">An app for discovering books about Kotlin.</string>
+    <string name="an_app_for_discovering_books">An app for discovering books.</string>
     <string name="powered_by_google_books_api">Powered by Google Books API</string>
     <string name="version_1_0_0">Version: 1.0.0</string>
-    <string name="developer_name">Developer: Name</string>
+    <string name="developer_name">Developer: Congying Zhao</string>
     <string name="date_10_03_2025">Date: 10/03/2025</string>
     <string name="loading_books_emoji">Loading books… 📚</string>
     <string name="back">Back</string>
     <string name="open_menu">Open menu</string>
     <string name="open_submenu">Open submenu</string>
     <string name="no_books_found_in_api_response">No books found in API response.</string>
+    <string name="book_placeholder_cover"><![CDATA[https://plus.unsplash.com/premium_photo-1677526779324-01d20d3a27ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGJvb2slMjBjb3ZlciUyMHByb2dyYW1taW5nfGVufDB8MXwwfHx8MA%3D%3D]]></string>
 
 </resources>

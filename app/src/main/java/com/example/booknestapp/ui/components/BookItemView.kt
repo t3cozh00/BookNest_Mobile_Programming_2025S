@@ -15,9 +15,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.booknestapp.R
 import com.example.booknestapp.models.BookItem
 
 @Composable
@@ -28,7 +30,7 @@ fun BookItemView(book: BookItem, navController: NavController ){
             ?.replace("http://", "https://")
         ?: book.volumeInfo.imageLinks?.smallThumbnail
             ?.replace("http://", "https://")
-        ?: "https://plus.unsplash.com/premium_photo-1677526779324-01d20d3a27ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGJvb2slMjBjb3ZlciUyMHByb2dyYW1taW5nfGVufDB8MXwwfHx8MA%3D%3D"
+        ?: stringResource(R.string.book_placeholder_cover)
 
     Log.d("BookItemView", "Loading Image URL: $coverUrl") // ✅ Debugging
 
@@ -40,7 +42,9 @@ fun BookItemView(book: BookItem, navController: NavController ){
             .clickable { navController.navigate("bookDetail/${book.id}") }
     ){
         Row (
-            modifier = Modifier.padding(8.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ){
 

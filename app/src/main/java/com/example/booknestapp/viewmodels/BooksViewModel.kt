@@ -26,7 +26,7 @@ class BooksViewModel : ViewModel() {
 
     private val apiKey = BuildConfig.SECURE_API_KEY
 
-    private val maxResults = 9 //Number of books per page
+    private val maxResults = 10 //Number of books per page
 
     init {
         fetchKotlinBooks()

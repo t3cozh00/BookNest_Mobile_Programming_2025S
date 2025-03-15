@@ -61,7 +61,7 @@ fun DetailScreen(navController: NavController, book: BookItem?){
             ?.replace(httpString, httpsString)
         ?: book.volumeInfo.imageLinks?.smallThumbnail
             ?.replace(httpString, httpsString)
-        ?: stringResource(R.string.placeholder_cover)
+        ?: stringResource(R.string.book_placeholder_cover)
 
     Scaffold (
         topBar = { ScreenTopBar(stringResource(R.string.book_detail_topbar), navController) },
